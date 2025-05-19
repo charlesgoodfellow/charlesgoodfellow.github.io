@@ -1,0 +1,484 @@
+/* --- Fonts --- */
+
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Bahianita&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
+
+/* --- Custom Font: (Norwester) --- */
+
+@font-face {
+  font-family: "Norwester";
+  src: url("../fonts/Norwester/norwester.eot") format("eot"),
+  url("../fonts/Norwester/norwester.otf") format("otf"),
+  url("../fonts/Norwester/norwester.svg") format("svg"),
+  url("../fonts/Norwester/norwester.ttf") format("truetype"),
+  url("../fonts/Norwester/norwester.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* --- Variables --- */
+
+:root {
+
+  /* --- Fonts: Primary, Secondary, Accent. --- */
+
+  --font-primary: "Inconsolata", sans-serif;
+  --font-secondary: "Roboto Slab", serif;
+  --font-accent: "Norwester" serif;
+
+  /* --- Fonts: Other --- */
+
+  --font-norwester: "Norwester", sans-serif;
+  --font-ubuntu: "Ubuntu", serif;
+  --font-roboto-slab: "Roboto Slab", serif;
+  --font-playfair-display: "Playfair Display", serif;
+  --font-bahianta: "Bahianita", serif;
+  --font-inconsolata: "Inconsolata", monospace;
+
+  /* --- Font Size & Line Height --- */
+
+  --font-size-small: 1rem;
+  --font-size-medium: 1.25rem;
+  --font-size-large: 1.5rem;
+
+  /* Set Primary Font :root */
+
+  font-family: var(--font-primary);
+  color: var(--color-secondary);
+  line-height: 1.5rem;
+
+  /* --- Colors: Primary, Secondary, Accent. --- */
+
+  --color-primary: var(--color-white);
+  --color-secondary: var(--color-black);
+  --color-accent: var(--color-light-lavender);
+
+  /* --- Color Index --- */
+
+  --color-white: #ffffff;
+  --color-black: #1f1f1f;
+  --color-off-white: #ede7f6;
+  --color-light-lavender: #E9CBFF;
+  --color-medium-lavender: #b39ddb;
+  --color-dark-lavender: #7e57c2;
+  --color-medium-gray: #3b3b3b;
+  --color-light-gray: #636363;
+
+  /* --- Border Values --- */
+
+  --border-type: solid;
+  --border-width: 0.1rem;
+  --border-color: #bfbfbf;
+  --border: var(--border-type) var(--border-width) var(--border-color);
+
+  /* --- Border Radius Values --- */
+
+  --border-radius-small: 0.25rem;
+  --border-radius-medium: 0.5rem;
+  --border-radius-large: 1rem;
+  --border-radius-full: 100%;
+
+  /* --- box-shadow: h-axis v-axis blur spread #color--- */
+  --box-shadow: 0 0.25rem 0.25rem 0 #bfbfbf;
+  --box-shadow-hover: 0 0.5rem 0.5rem 0 #bfbfbf;
+  --box-shadow-container: 0 0 0.25rem 0 rgb(0,0,0,0.5);
+  --box-shadow-button: 0 0.125rem 0.25rem 0 rgb(0,0,0,0.5);
+  --box-shadow-button-click: 0 0 0 0 rgb(0,0,0,0.5);
+  
+  /* --- Padding & Margin Values --- */
+
+  --padding-none: 0;
+  --padding-small: 0.25rem;
+  --padding-medium: 0.5rem;
+  --padding-large: 1rem;
+  
+  --margin-none: 0;
+  --margin-small: 0.25rem;
+  --margin-medium: 0.5rem;
+  --margin-large: 1rem;
+
+  /* --- Content Width Values --- */
+
+  --width-small: 320px;
+  --width-medium: 640px;
+  --width-large: 960px;
+}
+
+/* --- Align Content (Vertical Axis) --- */
+
+.align-self-center {align-self: center;}
+.align-items-center {align-items: center;}
+.align-content-center {align-content: center;}
+
+/* --- Justify Content (Horizontal Axis) --- */
+
+.justify-self-center {justify-self: center;}
+.justify-items-center {justify-items: center;}
+.justify-content-center {justify-content: center;}
+
+/* --- Justify Text (Horizontal Axis) --- */
+
+.justify-text-left {text-align: left;}
+.justify-text-right {text-align: right;}
+.justify-text-center {text-align: center;}
+
+/* --- Box Shadow --- */
+
+.box-shadow {
+ box-shadow: 
+ /* --- Top --- */
+ 0 -0.25rem 0.25rem 0.25rem rgb(0,0,0,0.05),
+ /* --- Bottom --- */
+ 0 0.25rem 0.25rem 0.25rem rgb(0,0,0,0.05),
+ /* --- Left --- */
+ -0.25rem 0 0.25rem 0.25rem rgb(0,0,0,0.05),
+ /* --- Right --- */
+ 0.25rem 0 0.25rem 0.25rem rgb(0,0,0,0.05);
+}
+
+/* --- Content --- */
+
+html { 
+  display: grid;
+  justify-content: center;
+  background-image: url(../images/Light-Mode-Background.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+/* --- Primary Content Areas --- */
+
+body {
+  display: inherit;
+  grid-template-areas:
+  " body-header     "
+  " body-main       "
+  " body-footer     ";
+  grid-template-columns: 1fr;
+  grid-gap: var(--margin-small);
+  min-width: var(--width-small);
+  max-width: var(--width-medium);
+}
+
+header {
+  display: inherit;
+  grid-area: body-header;
+  grid-template-areas:
+  " menu-button tabbed-buttons dark-mode-button ";
+  grid-template-columns: 1fr 5fr 1fr;
+  border-radius: 10px;
+  padding: var(--padding-medium);
+  margin: var(--margin-small);
+  width: 90%;
+  align-items: center;
+  background: var(--color-primary);
+}
+
+.navigation-menu {
+  display: inherit;
+  grid-area: tabbed-buttons;
+  justify-self: center;
+  width: 90%;
+}
+
+main {
+  display: inherit;
+  grid-area: body-main;
+  width: 90%;
+}
+
+footer {
+  display: inherit;
+  grid-area: body-footer;
+  grid-template-areas:
+  " github-icon footer-copyright linkedin-icon ";
+  width: 90%;
+  grid-template-columns: 1fr 5fr 1fr;
+  padding-top: 0;
+}
+
+.footer-copyright {
+  display: inherit;
+  grid-area: footer-copyright;
+  align-self: center;
+}
+
+.footer-copyright img {
+  width: 1.5rem;
+  vertical-align: bottom;
+}
+
+.linkedin-icon {
+  display: inherit;
+  grid-area: linkedin-icon;
+  justify-self: right;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+}
+
+.github-icon {
+  display: inherit;
+  grid-area: github-icon;
+  justify-self: left;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+}
+
+.social-icon img {
+  display: inherit;
+  width: 35px;
+  align-self: center;
+}
+
+/* --- Containers --- */
+
+.span {
+  box-sizing: border-box;
+  display: inherit;
+  justify-self: center;
+  /* border: solid var(--color-accent) 0.25rem; */
+  border-radius: 10px;
+  padding: var(--padding-medium);
+  margin: var(--margin-medium);
+  width: 97.5%;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.container {
+  display: inherit;
+  background: var(--color-primary);
+  font-family: inherit;
+  border: solid var(--color-accent) 0.25rem;
+  padding: var(--padding-medium);
+  margin: var(--margin-small);
+  border-radius: 10px;
+}
+
+/* --- Other Elements --- */
+
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
+.title {
+  margin: 0;
+  padding: 0.1rem;
+  font-family: var(--font-norwester);
+}
+
+.image {
+  display: grid;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  box-sizing: border-box;
+  padding: var(--padding-medium);
+  margin: var(--margin-medium);
+  border-radius: 10px;
+  width: 95%;
+  justify-self: center;
+}
+
+.headshot {
+  justify-self: center;
+  width: 50%;
+  margin-top: var(--margin-medium);
+  margin-bottom: var(--margin-medium);
+  border: none;
+  border-radius: 20px;
+}
+
+/* --- Dark Mode --- */
+
+.dark-mode-button {
+  grid-area: dark-mode-button;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-image: url(../images/Light-Mode-Icon.png);
+  background-color: var(--color-primary);
+  background-size: cover;
+  margin-left: var(--margin-medium);
+  justify-self: end;
+  border: none;
+}
+
+/* --- Menu Button --- */
+
+.menu-container {
+  display: grid;
+  grid-template-areas:
+  " menu-button ";
+}
+
+.menu-button {
+  grid-area: menu-button;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-image: url(../images/Open-Menu-Icon-Black.png);
+  background-color: var(--color-primary);
+  background-size: cover;
+  margin-right: var(--margin-medium);
+  border: none;
+}
+
+.menu-content-active {
+  display: inherit;
+  opacity: 100;
+  transition: 0.5s ease;
+}
+
+.menu-content-inactive {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+/* --- Tool List --- */
+
+.tool-list-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-evenly;
+  line-height: 125%;
+  padding-bottom: 0.75rem;;
+}
+
+.tool-list-content li {
+  background: var(--color-accent);
+  color: var(--color-secondary);
+  margin: 0.25rem;
+  padding: 0.25rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  border-radius: var(--border-radius-medium);
+  min-height: 1rem;
+  font-family: var(--font-norwester);
+  max-width: 75px;
+}
+
+/* --- Buttons --- */
+
+button {
+  border-radius: var(--border-radius-small);
+  font-family: var(--font-primary);
+}
+
+/* --- Tabbed Navigation --- */
+
+.tabbed-buttons {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.tabbed-buttons button {
+  margin-bottom: var(--padding-large);
+  padding: 0.5rem;
+  border-radius: var(--border-radius-medium);
+  line-height: 1.25rem;
+  border: none;
+  margin: var(--margin-none) auto;
+  font-family: var(--font-norwester);
+}
+
+.tabbed-buttons-active {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  transition: all 1s ease-in-out;
+}
+
+.tabbed-buttons-inactive {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.tabbed-content-active {
+  display: inherit;
+  visibility: visible;
+  transition: all 1s ease-in-out;
+}
+
+.tabbed-content-inactive {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+/* Media Queries: Min-Width */
+
+@media only screen and (min-width: 0px) {
+  :root {
+    font-size: 75%;
+  }
+}
+
+@media only screen and (min-width: 320px) {
+  :root {
+    font-size: 75%;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  :root {
+    font-size: 80%;
+  }
+}
+
+
+@media only screen and (min-width: 960px) {
+  :root {
+    font-size: 85%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  :root {
+    font-size: 90%;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  :root {
+    font-size: 95%;
+  }
+}
+
+/* FHD */
+
+@media only screen and (min-width: 1920px) {
+  :root {
+    font-size: 100%;
+  }
+}
+
+/* QHD */
+
+@media only screen and (min-width: 2560px) {
+
+}
+
+/* UHD */
+
+@media only screen and (min-width: 3840px) {
+
+}
