@@ -144,7 +144,6 @@
 html { 
   display: grid;
   justify-content: center;
-  background: url(../IMG/Light-Mode-Background.png);
 }
 
 html::before {
@@ -154,7 +153,7 @@ html::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url(../IMG/Light-Mode-Background.png) no-repeat center center/cover fixed;
+  background: url(../IMG/Light-Mode-Background.png) center;
   z-index: -1;
 }
 
