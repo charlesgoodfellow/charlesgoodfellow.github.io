@@ -59,11 +59,11 @@ const menuButton = () => {
     if (darkModeActive == false) {
       
       if (navigationMenuActive == true) {
-        menuButton.style.backgroundImage = "url('./images/Closed-Menu-Icon-Black.png')";
+        menuButton.style.backgroundImage = "url('./IMG/Closed-Menu-Icon-Black.png')";
         navigationMenu.classList.replace("menu-content-active", "menu-content-inactive");
         navigationMenuActive = false;
       } else {
-        menuButton.style.backgroundImage = "url('./images/Open-Menu-Icon-Black.png')";
+        menuButton.style.backgroundImage = "url('./IMG/Open-Menu-Icon-Black.png')";
         navigationMenu.classList.replace("menu-content-inactive", "menu-content-active");
         navigationMenuActive = true;
       }
@@ -71,11 +71,11 @@ const menuButton = () => {
     } else {
       
       if (navigationMenuActive == true) {
-        menuButton.style.backgroundImage = "url('./images/Closed-Menu-Icon-White.png')";
+        menuButton.style.backgroundImage = "url('./IMG/Closed-Menu-Icon-White.png')";
         navigationMenu.classList.replace("menu-content-active", "menu-content-inactive");
         navigationMenuActive = false;
       } else {
-        menuButton.style.backgroundImage = "url('./images/Open-Menu-Icon-White.png')";
+        menuButton.style.backgroundImage = "url('./IMG/Open-Menu-Icon-White.png')";
         navigationMenu.classList.replace("menu-content-inactive", "menu-content-active");
         navigationMenuActive = true;
       }
@@ -95,15 +95,15 @@ const darkMode = () => {
       document.querySelector(':root').style.setProperty('--color-primary', '#1f1f1f');
       document.querySelector(':root').style.setProperty('--color-secondary', '#ffffff');
       document.querySelector(':root').style.setProperty('--color-accent', 'var(--color-light-gray)');
-      document.querySelector('html').style.backgroundImage = "url('./images/Dark-Mode-Background.png')";
-      darkModeButton.style.backgroundImage = "url('./images/Dark-Mode-Icon.png')";
-      document.getElementById('github-icon').src="./images/GitHub-Icon-Dark.png";
-      document.getElementById('linkedin-icon').src="./images/LinkedIn-Icon-Dark.png";
+      document.querySelector('html').style.background = "url('./IMG/Dark-Mode-Background.png') no-repeat center center/cover fixed";
+      darkModeButton.style.backgroundImage = "url('./IMG/Dark-Mode-Icon.png')";
+      document.getElementById('github-icon').src="./IMG/GitHub-Icon-Dark.png";
+      document.getElementById('linkedin-icon').src="./IMG/LinkedIn-Icon-Dark.png";
       
       if (navigationMenuActive == true) {
-        menuButton.style.backgroundImage = "url('./images/Open-Menu-Icon-White.png')";
+        menuButton.style.backgroundImage = "url('./IMG/Open-Menu-Icon-White.png')";
       } else {
-        menuButton.style.backgroundImage = "url('./images/Closed-Menu-Icon-White.png')";
+        menuButton.style.backgroundImage = "url('./IMG/Closed-Menu-Icon-White.png')";
       }
 
       darkModeActive = true;
@@ -113,15 +113,15 @@ const darkMode = () => {
       document.querySelector(':root').style.setProperty('--color-primary', '#ffffff');
       document.querySelector(':root').style.setProperty('--color-secondary', '#1f1f1f');
       document.querySelector(':root').style.setProperty('--color-accent', 'var(--color-light-lavender)');
-      document.querySelector('html').style.backgroundImage = "url('./images/Light-Mode-Background.png')";
-      darkModeButton.style.backgroundImage = "url('./images/Light-Mode-Icon.png')";
-      document.getElementById('github-icon').src="./images/GitHub-Icon-Light.png";
-      document.getElementById('linkedin-icon').src="./images/Linkedin-Icon-Light.png";
+      document.querySelector('html').style.background = "url('./IMG/Light-Mode-Background.png') no-repeat center center/cover fixed";
+      darkModeButton.style.backgroundImage = "url('./IMG/Light-Mode-Icon.png')";
+      document.getElementById('github-icon').src="./IMG/GitHub-Icon-Light.png";
+      document.getElementById('linkedin-icon').src="./IMG/Linkedin-Icon-Light.png";
 
       if (navigationMenuActive == true) {
-        menuButton.style.backgroundImage = "url('./images/Open-Menu-Icon-Black.png')";
+        menuButton.style.backgroundImage = "url('./IMG/Open-Menu-Icon-Black.png')";
       } else {
-        menuButton.style.backgroundImage = "url('./images/Closed-Menu-Icon-Black.png')";
+        menuButton.style.backgroundImage = "url('./IMG/Closed-Menu-Icon-Black.png')";
       }
       
       darkModeActive = false;

@@ -10,11 +10,11 @@
 
 @font-face {
   font-family: "Norwester";
-  src: url("../fonts/Norwester/norwester.eot") format("eot"),
-  url("../fonts/Norwester/norwester.otf") format("otf"),
-  url("../fonts/Norwester/norwester.svg") format("svg"),
-  url("../fonts/Norwester/norwester.ttf") format("truetype"),
-  url("../fonts/Norwester/norwester.woff") format("woff");
+  src: url("../SRC/Norwester/norwester.eot") format("eot"),
+  url("../SRC/Norwester/norwester.otf") format("otf"),
+  url("../SRC/Norwester/norwester.svg") format("svg"),
+  url("../SRC/Norwester/norwester.ttf") format("truetype"),
+  url("../SRC/Norwester/norwester.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -144,10 +144,7 @@
 html { 
   display: grid;
   justify-content: center;
-  background-image: url(../images/Light-Mode-Background.png);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
+  background: url(../IMG/Light-Mode-Background.png) no-repeat center center/cover fixed;
   background-size: 100% 100%;
 }
 
@@ -210,7 +207,7 @@ footer {
 
 .footer-copyright img {
   width: 1.5rem;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .linkedin-icon {
@@ -307,7 +304,7 @@ p {
   grid-area: dark-mode-button;
   height: 2.5rem;
   width: 2.5rem;
-  background-image: url(../images/Light-Mode-Icon.png);
+  background-image: url(../IMG/Light-Mode-Icon.png);
   background-color: var(--color-primary);
   background-size: cover;
   margin-left: var(--margin-medium);
@@ -327,7 +324,7 @@ p {
   grid-area: menu-button;
   height: 2.5rem;
   width: 2.5rem;
-  background-image: url(../images/Open-Menu-Icon-Black.png);
+  background-image: url(../IMG/Open-Menu-Icon-Black.png);
   background-color: var(--color-primary);
   background-size: cover;
   margin-right: var(--margin-medium);
@@ -343,7 +340,7 @@ p {
 .menu-content-inactive {
   visibility: hidden;
   opacity: 0;
-  transition: 0.5s ease;
+  transition: 0.25s ease;
 }
 
 /* --- Tool List --- */
