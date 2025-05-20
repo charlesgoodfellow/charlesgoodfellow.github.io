@@ -116,7 +116,7 @@ const darkMode = () => {
       document.querySelector('html').style.background = "url('./IMG/Light-Mode-Background.png') no-repeat center center/cover fixed";
       darkModeButton.style.backgroundImage = "url('./IMG/Light-Mode-Icon.png')";
       document.getElementById('github-icon').src="./IMG/GitHub-Icon-Light.png";
-      document.getElementById('linkedin-icon').src="./IMG/Linkedin-Icon-Light.png";
+      document.getElementById('linkedin-icon').src="./IMG/LinkedIn-Icon-Light.png";
 
       if (navigationMenuActive == true) {
         menuButton.style.backgroundImage = "url('./IMG/Open-Menu-Icon-Black.png')";

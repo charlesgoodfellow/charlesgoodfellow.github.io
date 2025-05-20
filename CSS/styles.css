@@ -144,8 +144,18 @@
 html { 
   display: grid;
   justify-content: center;
+  background: url(../IMG/Light-Mode-Background.png);
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: url(../IMG/Light-Mode-Background.png) no-repeat center center/cover fixed;
-  background-size: 100% 100%;
+  z-index: -1;
 }
 
 /* --- Primary Content Areas --- */
