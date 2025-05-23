@@ -105,6 +105,9 @@
   --width-small: 320px;
   --width-medium: 640px;
   --width-large: 960px;
+
+  /* --- Background Image --- */
+  --background-image: url(../IMG/Light-Mode-Background.png);
 }
 
 /* --- Align Content (Vertical Axis) --- */
@@ -151,9 +154,12 @@ html::before {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: url(../IMG/Light-Mode-Background.png) center;
+  width: 100%;
+  height: 100%;
+  background: var(--background-image);
+  background-size: contain 100%;
+  background-repeat: no-repeat;
+  background-position: center;;
   z-index: -1;
 }
 
@@ -165,7 +171,6 @@ body {
   " body-header     "
   " body-main       "
   " body-footer     ";
-  grid-template-columns: 1fr;
   grid-gap: var(--margin-small);
   min-width: var(--width-small);
   max-width: var(--width-medium);
@@ -183,6 +188,7 @@ header {
   width: 90%;
   align-items: center;
   background: var(--color-primary);
+  box-shadow: var(--box-shadow-button);
 }
 
 .navigation-menu {
@@ -196,6 +202,7 @@ main {
   display: inherit;
   grid-area: body-main;
   width: 90%;
+  box-shadow: var(--box-shadow-button);
 }
 
 footer {
@@ -206,6 +213,7 @@ footer {
   width: 90%;
   grid-template-columns: 1fr 5fr 1fr;
   padding-top: 0;
+  box-shadow: var(--box-shadow-button);
 }
 
 .footer-copyright {
@@ -338,6 +346,7 @@ p {
   background-size: cover;
   margin-right: var(--margin-medium);
   border: none;
+  transition: 0.25s ease-in-out;
 }
 
 .menu-content-active {
@@ -349,7 +358,7 @@ p {
 .menu-content-inactive {
   visibility: hidden;
   opacity: 0;
-  transition: 0.25s ease;
+  transition: 0.5s ease;
 }
 
 /* --- Tool List --- */

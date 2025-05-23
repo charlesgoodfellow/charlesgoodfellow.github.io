@@ -95,7 +95,7 @@ const darkMode = () => {
       document.querySelector(':root').style.setProperty('--color-primary', '#1f1f1f');
       document.querySelector(':root').style.setProperty('--color-secondary', '#ffffff');
       document.querySelector(':root').style.setProperty('--color-accent', 'var(--color-light-gray)');
-      document.querySelector('html').style.background = "url('./IMG/Dark-Mode-Background.png') no-repeat center center/cover fixed";
+      document.querySelector(':root').style.setProperty('--background-image', 'url(../IMG/Dark-Mode-Background.png)')
       darkModeButton.style.backgroundImage = "url('./IMG/Dark-Mode-Icon.png')";
       document.getElementById('github-icon').src="./IMG/GitHub-Icon-Dark.png";
       document.getElementById('linkedin-icon').src="./IMG/LinkedIn-Icon-Dark.png";
@@ -113,7 +113,7 @@ const darkMode = () => {
       document.querySelector(':root').style.setProperty('--color-primary', '#ffffff');
       document.querySelector(':root').style.setProperty('--color-secondary', '#1f1f1f');
       document.querySelector(':root').style.setProperty('--color-accent', 'var(--color-light-lavender)');
-      document.querySelector('html').style.background = "url('./IMG/Light-Mode-Background.png') no-repeat center center/cover fixed";
+      document.querySelector(':root').style.setProperty('--background-image', 'url(../IMG/Light-Mode-Background.png)')
       darkModeButton.style.backgroundImage = "url('./IMG/Light-Mode-Icon.png')";
       document.getElementById('github-icon').src="./IMG/GitHub-Icon-Light.png";
       document.getElementById('linkedin-icon').src="./IMG/LinkedIn-Icon-Light.png";
