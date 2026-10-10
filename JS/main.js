@@ -1,148 +1,85 @@
-// This file contains the JavaScript code for the website. It may include functions for interactivity, event handling, and DOM manipulation.
+// Charles Goodfellow · Personal Website
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Document is ready!');
-    
-    // Example function to handle a button click
-    const button = document.getElementById('myButton');
-    if (button) {
-        button.addEventListener('click', () => {
-            alert('Button was clicked!');
-        });
-    }
+const root = document.documentElement;
+root.classList.add("js");
+
+// --- Theme toggle (remembers the visitor's choice, otherwise follows the OS) ---
+
+const themeToggle = document.querySelector(".theme-toggle");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+const currentTheme = () => root.dataset.theme || (prefersDark.matches ? "dark" : "light");
+
+themeToggle.addEventListener("click", () => {
+  const next = currentTheme() === "dark" ? "light" : "dark";
+  root.dataset.theme = next;
+  try {
+    localStorage.setItem("theme", next);
+  } catch (e) {}
 });
 
-let darkModeActive = false;
-let navigationMenuActive = true;
-  
-// tabbed navigation
+// --- Mobile navigation ---
 
-const tabbedMenu = () => {
-  const tabbedButtons = document.querySelector(".tabbed-buttons").children;
-  const tabbedContent = document.querySelectorAll(".tabbed-content");
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.getElementById("nav-links");
 
-  for (let i = 0; i < tabbedButtons.length; i++) {
-    tabbedButtons[i].classList.add(`tabbed-group-${i + 1}`);
-    tabbedContent[i].classList.add(`tabbed-group-${i + 1}`);
-  }
+const setMenu = (open) => {
+  navLinks.classList.toggle("is-open", open);
+  navToggle.setAttribute("aria-expanded", String(open));
+  navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+};
 
-  tabbedButtons[0].classList.add("tabbed-buttons-active");
-  tabbedContent[0].classList.add("tabbed-content-active");
+navToggle.addEventListener("click", () => setMenu(!navLinks.classList.contains("is-open")));
+navLinks.addEventListener("click", (event) => {
+  if (event.target.closest("a")) setMenu(false);
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setMenu(false);
+});
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".site-nav")) setMenu(false);
+});
 
-  for (let i = 1; i < tabbedContent.length; i++) {
-    tabbedButtons[i].classList.add("tabbed-buttons-inactive")
-    tabbedContent[i].classList.add("tabbed-content-inactive")
-  }
+// --- Highlight the nav link for the section in view ---
 
-  for (let i = 0; i < tabbedButtons.length; i++) {
-    tabbedButtons[i].addEventListener("click", () => {
-      if (tabbedButtons[i].classList.contains(`tabbed-group-${i}`) === tabbedContent[i].classList.contains(`tabbed-group-${i}`)) {
-        for (let i = 0; i < tabbedContent.length; i++) {
-          tabbedButtons[i].classList.replace("tabbed-buttons-active", "tabbed-buttons-inactive");
-          tabbedContent[i].classList.replace("tabbed-content-active", "tabbed-content-inactive");
+const sections = document.querySelectorAll("main section[id]");
+const linkFor = (id) => navLinks.querySelector(`a[href="#${id}"]`);
+
+if ("IntersectionObserver" in window) {
+  const navObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const link = linkFor(entry.target.id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.querySelectorAll("a").forEach((a) => a.removeAttribute("aria-current"));
+          link.setAttribute("aria-current", "true");
         }
-        tabbedButtons[i].classList.replace("tabbed-buttons-inactive", "tabbed-buttons-active");
-        tabbedContent[i].classList.replace("tabbed-content-inactive", "tabbed-content-active");
-      }
-    })
-  }
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px" }
+  );
+  sections.forEach((section) => navObserver.observe(section));
+
+  // --- Fade sections in as they scroll into view ---
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll(".section").forEach((el) => {
+    el.classList.add("reveal");
+    revealObserver.observe(el);
+  });
 }
 
-tabbedMenu();
+// --- Footer year ---
 
-const menuButton = () => {
-  const menuButton = document.querySelector(".menu-button");
-  const navigationMenu = document.querySelector(".navigation-menu")
-
-  menuButton.addEventListener('click', () => {
-    console.log("I clicked a button")
-    if (darkModeActive == false) {
-      
-      if (navigationMenuActive == true) {
-        menuButton.style.backgroundImage = "url('./IMG/Closed-Menu-Icon-Black.png')";
-        navigationMenu.classList.replace("menu-content-active", "menu-content-inactive");
-        navigationMenuActive = false;
-      } else {
-        menuButton.style.backgroundImage = "url('./IMG/Open-Menu-Icon-Black.png')";
-        navigationMenu.classList.replace("menu-content-inactive", "menu-content-active");
-        navigationMenuActive = true;
-      }
-
-    } else {
-      
-      if (navigationMenuActive == true) {
-        menuButton.style.backgroundImage = "url('./IMG/Closed-Menu-Icon-White.png')";
-        navigationMenu.classList.replace("menu-content-active", "menu-content-inactive");
-        navigationMenuActive = false;
-      } else {
-        menuButton.style.backgroundImage = "url('./IMG/Open-Menu-Icon-White.png')";
-        navigationMenu.classList.replace("menu-content-inactive", "menu-content-active");
-        navigationMenuActive = true;
-      }
-
-    }
-  })
-}
-
-menuButton();
-
-const darkMode = () => {
-  const darkModeButton = document.querySelector(".dark-mode-button");
-  const menuButton = document.querySelector(".menu-button");
-
-  darkModeButton.addEventListener('click', () => {
-    if (darkModeActive == false) {
-      document.querySelector(':root').style.setProperty('--color-primary', '#1f1f1f');
-      document.querySelector(':root').style.setProperty('--color-secondary', '#ffffff');
-      document.querySelector(':root').style.setProperty('--color-accent', 'var(--color-light-gray)');
-      document.querySelector(':root').style.setProperty('--background-image', 'url(../IMG/Dark-Mode-Background.png)')
-      darkModeButton.style.backgroundImage = "url('./IMG/Dark-Mode-Icon.png')";
-      document.getElementById('github-icon').src="./IMG/GitHub-Icon-Dark.png";
-      document.getElementById('linkedin-icon').src="./IMG/LinkedIn-Icon-Dark.png";
-      
-      if (navigationMenuActive == true) {
-        menuButton.style.backgroundImage = "url('./IMG/Open-Menu-Icon-White.png')";
-      } else {
-        menuButton.style.backgroundImage = "url('./IMG/Closed-Menu-Icon-White.png')";
-      }
-
-      darkModeActive = true;
-
-    } else {
-      
-      document.querySelector(':root').style.setProperty('--color-primary', '#ffffff');
-      document.querySelector(':root').style.setProperty('--color-secondary', '#1f1f1f');
-      document.querySelector(':root').style.setProperty('--color-accent', 'var(--color-light-lavender)');
-      document.querySelector(':root').style.setProperty('--background-image', 'url(../IMG/Light-Mode-Background.png)')
-      darkModeButton.style.backgroundImage = "url('./IMG/Light-Mode-Icon.png')";
-      document.getElementById('github-icon').src="./IMG/GitHub-Icon-Light.png";
-      document.getElementById('linkedin-icon').src="./IMG/LinkedIn-Icon-Light.png";
-
-      if (navigationMenuActive == true) {
-        menuButton.style.backgroundImage = "url('./IMG/Open-Menu-Icon-Black.png')";
-      } else {
-        menuButton.style.backgroundImage = "url('./IMG/Closed-Menu-Icon-Black.png')";
-      }
-      
-      darkModeActive = false;
-    
-    }
-  })
-}
-
-darkMode();
-
-let text = "Hello, this is a typewriter effect using setInterval!";
-let typwriter = document.querySelector(".typewriter");
-
-function typeWriter(text) {
-  let index = 0;
-  let interval = setInterval(function () {
-      if (index < text.length) {
-          typwriter.innerHTML += text.charAt(index);
-          index++;
-      } else {
-          clearInterval(interval);
-      }
-  }, 100); // Interval of 100ms
-}
+document.getElementById("year").textContent = new Date().getFullYear();

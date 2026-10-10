@@ -1,17 +1,24 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-
-    <!-- Standard meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Website title -->
-    <title> Charles Goodfellow - Personal Website </title>
-
-    <meta name="description" content="Charlses Goodfellow - Personal Website.">
+    <title>Charles Goodfellow · Site Reliability Engineer</title>
+    <meta name="description" content="Charles Goodfellow is a Seattle-area Site Reliability Engineer focused on observability, automation, and turning complex problems into simple solutions.">
     <meta name="author" content="Charles Goodfellow">
-    <meta name="version" content="1.1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f7f5fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121016" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://www.charlesgoodfellow.com/">
+
+    <!-- Social sharing -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Charles Goodfellow · Site Reliability Engineer">
+    <meta property="og:description" content="Site Reliability Engineer focused on observability. I help people turn complex problems into simple solutions.">
+    <meta property="og:url" content="https://www.charlesgoodfellow.com/">
+    <meta property="og:image" content="https://www.charlesgoodfellow.com/IMG/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="./IMG/icons/apple-touch-icon.png">
@@ -19,225 +26,413 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./IMG/icons/favicon-16x16.png">
     <link rel="manifest" href="./IMG/icons/site.webmanifest">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="./CSS/styles.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="preload" href="./SRC/Norwester/norwester.woff" as="font" type="font/woff" crossorigin>
 
+    <!-- Apply the saved theme before first paint to avoid a flash -->
+    <script>
+      try {
+        const saved = localStorage.getItem("theme");
+        if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
+      } catch (e) {}
+    </script>
+
+    <link rel="stylesheet" href="./CSS/styles.css">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Charles Goodfellow",
+        "jobTitle": "Site Reliability Engineer",
+        "worksFor": { "@type": "Organization", "name": "WaFd Bank" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Kirkland", "addressRegion": "WA" },
+        "url": "https://www.charlesgoodfellow.com/",
+        "image": "https://www.charlesgoodfellow.com/IMG/headshot.jpg",
+        "sameAs": [
+          "https://www.linkedin.com/in/charlesgoodfellow/",
+          "https://github.com/charlesgoodfellow"
+        ]
+      }
+    </script>
   </head>
 
-  <body class="justify-text-center justify-items-center">
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="container">
-      <button class="menu-button"></button>
+    <!-- Reusable icons -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.82-.26.82-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .3"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+    </svg>
 
-      <div class="navigation-menu menu-content-active">
-        <div class="tabbed-buttons">
-          <button> BIOGRAPHY </button>
-          <button> EXPERIENCE </button>
-          <button> EDUCATION </button>
-          <button> PROJECTS </button>
-        </div>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a href="#top" class="brand" aria-label="Charles Goodfellow, back to top">CG</a>
+
+        <nav class="site-nav" aria-label="Primary">
+          <button class="icon-button nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+            <svg aria-hidden="true"><use href="#i-menu"/></svg>
+          </button>
+          <ul id="nav-links" class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+          </ul>
+        </nav>
+
+        <button class="icon-button theme-toggle" type="button" aria-label="Toggle dark mode">
+          <svg class="icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
       </div>
-
-      <button class="dark-mode-button light-theme-active"></button>
     </header>
-    
-    <main class="container justify-self-center">
-      
-      <div class="tabbed-content">
-        
-        <div class="span">
-          <p class="title"> Systems Engineer + Founder: WIRED WORKS </p>
-          <p class="title"> Years Active (2015 - Present) </p>
-        </div>
-          <img src="./IMG/Primary-Profile-Icon.jpeg" class="headshot container">
-          <p> Hello there! I'm Charles and I like to think of myself as "talented" but "humble" Systems Engineer - I'm currently working on tooling, automation, and endpoint management on the Starbucks Connect Platform (primarily in PowerShell). <br> <br> Prior to this role, I worked in Systems Administration, IT Support, and Field Services for several iconic Seattle-based companies (Brown Bear & Seattle Goodwill) as well as larger global organizations. <br> <br> In my current role I work mostly in PowerShell and Kaseya VSA pseudocode but I have also worked Python in prior roles, and I've done simple web development with JavaScript, HTML, and CSS. I love solving complex problems no matter what coding or scripting language I'm working with. <br> <br>I really enjoy working with technology but my favorite part of the job is working with all the amazing customers (internal and external), co-workers, and leaders, that I've met over my career. People are always the reason. <br> <br> Feel free to reach out via LinkedIn if you're looking to talk tech or you're looking for an engineer to join your team. I love making new connections and expanding my network. After all - isn't human connection the meaning of everything! </p>
-        </div>
-   
-      </div>
-            
-      <div class="tabbed-content">
 
-        <div class="span">
-          <p class="title">
-            Systems Engineer - Starbucks <br> (July 2023 to Present)
+    <main id="main">
+
+      <!-- Hero -->
+      <section id="top" class="hero wrap">
+        <picture class="hero-photo">
+          <source srcset="./IMG/headshot.webp" type="image/webp">
+          <img src="./IMG/headshot.jpg" width="320" height="320" alt="Portrait of Charles Goodfellow">
+        </picture>
+
+        <div class="hero-text">
+          <p class="eyebrow">Hello there, I'm</p>
+          <h1 class="display">Charles Goodfellow</h1>
+          <p class="lede">
+            I help people turn <strong>complex problems</strong> into <strong>simple solutions</strong>.
+            Site Reliability Engineer focused on observability at <strong>WaFd Bank</strong>, and founder of
+            <strong>WIRED WORKS</strong>.
           </p>
+          <p class="meta">
+            <svg aria-hidden="true"><use href="#i-pin"/></svg> Kirkland, WA
+            <span class="dot" aria-hidden="true">·</span> In tech since 2015
+          </p>
+          <div class="actions">
+            <a class="button button-primary" href="https://www.linkedin.com/in/charlesgoodfellow/" target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#i-linkedin"/></svg> Connect on LinkedIn
+            </a>
+            <a class="button" href="https://github.com/charlesgoodfellow" target="_blank" rel="noopener">
+              <svg aria-hidden="true"><use href="#i-github"/></svg> GitHub
+            </a>
+          </div>
         </div>
-        <p> Developed tooling and automation in PowerShell for Kaseya VSA (MDM). Solved complex and highly time-sensitive (hardware/software/network) issues. Mentored systems analysts and provided support and oversight to 3rd-party vendors. Worked on large-scale patching, script deployment, and system testing projects. </p>
+      </section>
 
-        <div>
-        <ul class="tool-list-content">
-          <li> Jira & Confluence </li>
-          <li> CrowdStrike (Falcon) </li>
-          <li> Kaseya (VSA) </li>
-          <li> Oracle (Simphony) </li>
-          <li> HashiCorp (Vault) </li>
+      <!-- About -->
+      <section id="about" class="section wrap" aria-labelledby="about-title">
+        <h2 id="about-title" class="section-title"><span>01</span> About</h2>
+        <div class="about-grid">
+          <div class="prose">
+            <p>
+              I like to think of myself as a talented but humble technology professional. Today I'm a Site Reliability
+              Engineer at WaFd Bank, where I focus on observability: shaping the monitoring strategy for a hybrid cloud
+              and on-prem environment, and helping application teams see what their systems are really doing.
+            </p>
+            <p>
+              Before WaFd, I was a Systems Engineer on the Starbucks Connect platform team, building tooling and
+              automation for endpoint management, mostly in PowerShell. Earlier still, I worked in systems
+              administration, IT support, and field services for iconic Seattle-area organizations like Brown Bear and
+              Goodwill, as well as larger global companies.
+            </p>
+            <p>
+              Technology is fun, but my favorite part of the job is the people: the customers, co-workers, and leaders
+              I've met along the way. <em>People are always the reason.</em> If you want to talk tech, or you're looking
+              for an engineer to join your team, reach out on LinkedIn. I'm always glad to make a new connection.
+            </p>
+          </div>
+
+          <aside class="card skills" aria-label="Skills">
+            <h3>Observability &amp; cloud</h3>
+            <ul class="chips">
+              <li>AWS</li>
+              <li>CloudWatch</li>
+              <li>HCP Terraform</li>
+              <li>Azure DevOps</li>
+              <li>Microsoft Azure</li>
+              <li>Splunk</li>
+              <li>Jira Service Management</li>
+            </ul>
+            <h3>Systems &amp; endpoints</h3>
+            <ul class="chips">
+              <li>Windows Server</li>
+              <li>Linux</li>
+              <li>macOS</li>
+              <li>Active Directory</li>
+              <li>Microsoft Intune</li>
+              <li>Jamf</li>
+              <li>Kaseya VSA</li>
+              <li>VMware</li>
+            </ul>
+            <h3>Code &amp; security</h3>
+            <ul class="chips">
+              <li>PowerShell</li>
+              <li>Python</li>
+              <li>SQL</li>
+              <li>JavaScript</li>
+              <li>HashiCorp Vault</li>
+              <li>CrowdStrike Falcon</li>
+              <li>IAM &amp; PKI</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="section wrap" aria-labelledby="experience-title">
+        <h2 id="experience-title" class="section-title"><span>02</span> Experience</h2>
+
+        <ol class="timeline">
+          <li class="timeline-item">
+            <div class="timeline-head">
+              <h3>Site Reliability Engineer <span class="at">@ WaFd Bank</span></h3>
+              <p class="dates"><time datetime="2025-07">Jul 2025</time> – Present · Hybrid</p>
+            </div>
+            <ul class="bullets">
+              <li>Developed the overall observability strategy for a hybrid cloud and on-prem environment.</li>
+              <li>Partnered with application support teams to implement better monitoring.</li>
+              <li>Used HCP Terraform to deploy AWS infrastructure and monitoring configuration.</li>
+              <li>Led the integration of the Jira Service Management Operations module.</li>
+            </ul>
+            <ul class="chips chips-sm" aria-label="Tools">
+              <li>AWS</li><li>CloudWatch</li><li>HCP Terraform</li><li>Azure DevOps</li><li>Jira Operations</li><li>Confluence</li>
+            </ul>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-head">
+              <h3>Systems Engineer <span class="at">@ Starbucks</span></h3>
+              <p class="dates"><time datetime="2023-07">Jul 2023</time> – <time datetime="2025-07">Jul 2025</time> · Remote</p>
+            </div>
+            <ul class="bullets">
+              <li>Built PowerShell tooling and automation for Kaseya VSA endpoint management.</li>
+              <li>Resolved complex, time-sensitive hardware, software, and network issues.</li>
+              <li>Worked on large-scale patching, script deployment, and system testing projects.</li>
+              <li>Mentored systems analysts and oversaw third-party vendors.</li>
+            </ul>
+            <ul class="chips chips-sm" aria-label="Tools">
+              <li>Kaseya VSA</li><li>HashiCorp Vault</li><li>CrowdStrike Falcon</li><li>Splunk</li><li>Oracle Simphony</li><li>Jira</li>
+            </ul>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-head">
+              <h3>Systems Analyst II <span class="at">@ Starbucks</span></h3>
+              <p class="dates"><time datetime="2021-09">Sep 2021</time> – <time datetime="2023-06">Jun 2023</time> · Remote</p>
+            </div>
+            <ul class="bullets">
+              <li>Tier 3 technology support, overseeing the activation process for licensed stores.</li>
+              <li>Wrote internal documentation for standard processes and troubleshooting.</li>
+              <li>Resolved complex, time-sensitive hardware, software, and network issues.</li>
+              <li>Mentored analysts and provided oversight to third-party vendors.</li>
+            </ul>
+            <ul class="chips chips-sm" aria-label="Tools">
+              <li>Salesforce</li><li>Splunk</li><li>Kaseya VSA</li><li>ServiceNow</li><li>Confluence</li><li>Oracle Simphony</li>
+            </ul>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-head">
+              <h3>IT Support Technician <span class="at">@ Axon</span></h3>
+              <p class="dates"><time datetime="2020-07">Jul 2020</time> – <time datetime="2021-08">Aug 2021</time></p>
+            </div>
+            <ul class="bullets">
+              <li>Tier 1–3 support for 2,000+ users across North America and globally.</li>
+              <li>Supported users by phone, Slack, email, Zoom, ServiceNow, BeyondTrust, and in person.</li>
+              <li>Asset management and hardware support for Windows, macOS, and Linux.</li>
+              <li>Worked on Windows Autopilot, OS image creation, and Linux software integration.</li>
+            </ul>
+            <ul class="chips chips-sm" aria-label="Tools">
+              <li>Azure AD</li><li>Active Directory</li><li>Microsoft 365</li><li>Jamf</li><li>Ivanti</li><li>Okta</li><li>Dynamics 365</li>
+            </ul>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-head">
+              <h3>IT Support Specialist <span class="at">@ Car Wash Enterprises (Brown Bear)</span></h3>
+              <p class="dates"><time datetime="2019-07">Jul 2019</time> – <time datetime="2020-06">Jun 2020</time></p>
+            </div>
+            <ul class="bullets">
+              <li>Tier 1–3 support for 250+ users at 40+ locations across Washington.</li>
+              <li>Managed vendors, billing, licensing, asset management, and documentation.</li>
+              <li>Performed comprehensive licensing and inventory audits for all IT assets.</li>
+              <li>Introduced SLAs, naming conventions, an AD restructure, and password management.</li>
+            </ul>
+            <ul class="chips chips-sm" aria-label="Tools">
+              <li>Active Directory</li><li>Exchange</li><li>Office 365</li><li>GFI mail filtering</li><li>TeamViewer</li><li>SolarWinds</li>
+            </ul>
+          </li>
+
+          <li class="timeline-item">
+            <div class="timeline-head">
+              <h3>Field Services Engineer <span class="at">@ Evergreen Goodwill</span></h3>
+              <p class="dates"><time datetime="2015-10">Oct 2015</time> – <time datetime="2017-12">Dec 2017</time></p>
+            </div>
+            <ul class="bullets">
+              <li>Tier 1–3 support for 1,000+ users at 25+ locations across Washington.</li>
+              <li>Supported a hybrid VoIP phone system, VMware VDI, and A/V systems.</li>
+              <li>Maintained server and network infrastructure, power, cabling, and cooling.</li>
+              <li>Full life-cycle support for laptops, desktops, and Android and iOS devices.</li>
+            </ul>
+            <ul class="chips chips-sm" aria-label="Tools">
+              <li>Active Directory</li><li>Exchange</li><li>KACE</li><li>McAfee ePO</li><li>IssueTrak</li><li>Dynamics RMS/GP</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="card side-role">
+          <p class="tag">Ongoing · <time datetime="2018-01">Since 2018</time></p>
+          <h3>Founder <span class="at">@ WIRED WORKS LLC</span></h3>
+          <p>Independent technical consulting and engineering services.</p>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="section wrap" aria-labelledby="projects-title">
+        <h2 id="projects-title" class="section-title"><span>03</span> Projects</h2>
+
+        <div class="card-grid">
+          <article class="card project">
+            <p class="tag">WaFd Bank</p>
+            <h3>Hybrid observability strategy</h3>
+            <p>
+              Defined how a bank's cloud and on-prem systems are monitored, rolled out AWS monitoring as code with
+              HCP Terraform, and led the Jira Service Management Operations integration for alerting and on-call.
+            </p>
+          </article>
+
+          <article class="card project">
+            <p class="tag">Starbucks</p>
+            <h3>HashiCorp Vault code refactor</h3>
+            <p>
+              Rewrote years-old client-side Vault automation and its deployment procedures to improve logging, error
+              handling, reliability, and performance. Became the team's Vault SME, led multi-team training, and wrote
+              the product documentation.
+            </p>
+          </article>
+
+          <article class="card project">
+            <p class="tag">Axon</p>
+            <h3>Microsoft Intune migration</h3>
+            <p>
+              Helped move the company onto Intune and Windows Autopilot: configuring and testing the first devices,
+              troubleshooting enrollment, and building out the Intune cloud environment with the engineering team.
+            </p>
+          </article>
+
+          <article class="card project">
+            <p class="tag">Brown Bear</p>
+            <h3>AD restructure &amp; asset management</h3>
+            <p>
+              Restructured Active Directory, created a naming convention for assets and locations, and ran a full
+              audit and inventory of equipment at 40+ sites, making assets far easier to track.
+            </p>
+          </article>
+
+          <article class="card project">
+            <p class="tag">Evergreen Goodwill</p>
+            <h3>VMware thin-client rollout</h3>
+            <p>
+              Moved Job Training &amp; Education Centers from desktops to thin clients on a central VMware cluster,
+              cutting reimaging work, cost, and power use, and trained staff on the new setup.
+            </p>
+          </article>
+
+          <article class="card project">
+            <p class="tag">Personal</p>
+            <h3>Darkest Dungeon</h3>
+            <p>
+              A text-based dungeon crawler inspired by my first computer, an Apple //e. Built with Flask behind
+              Nginx, containerized with Docker, and deployed to AWS.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Education & certifications -->
+      <section id="education" class="section wrap" aria-labelledby="education-title">
+        <h2 id="education-title" class="section-title"><span>04</span> Education &amp; Certifications</h2>
+
+        <div class="card-grid">
+          <article class="card">
+            <p class="tag">2018 – 2019</p>
+            <h3>M.S., Cybersecurity &amp; Information Assurance</h3>
+            <p class="school">Western Governors University</p>
+            <p>
+              Cryptography, secure coding, security standards and frameworks, incident response, and digital
+              forensics, with the confidentiality, integrity, and availability model burned into my brain.
+            </p>
+          </article>
+
+          <article class="card">
+            <p class="tag">2015 – 2017</p>
+            <h3>B.S., Information Technology</h3>
+            <p class="school">Western Governors University</p>
+            <p>
+              A broad mix of front- and back-end coding, databases, hardware, networking, application support, and
+              security, which led to my first IT role at Goodwill.
+            </p>
+          </article>
+
+          <article class="card">
+            <p class="tag">2011 – 2014</p>
+            <h3>A.A., Liberal Arts &amp; Sciences</h3>
+            <p class="school">Green River College</p>
+            <p>
+              A well-rounded start, completed while working full-time security at Amazon's Seattle headquarters,
+              where conversations with engineers first got me thinking about a career in tech.
+            </p>
+          </article>
+        </div>
+
+        <h3 class="subsection-title">Certifications</h3>
+        <ul class="cert-list">
+          <li><span class="cert-name">Jamf Certified Tech (200)</span><span class="cert-meta">Jamf · 2021</span></li>
+          <li><span class="cert-name">Jamf Certified Associate (100)</span><span class="cert-meta">Jamf · 2021</span></li>
+          <li><span class="cert-name">Project+</span><span class="cert-meta">CompTIA · 2016</span></li>
+          <li><span class="cert-name">Kaseya Certified Administrator, VSA 9.5</span><span class="cert-meta">Kaseya · 2024</span></li>
+          <li><span class="cert-name">Kaseya Certified Technician, VSA 9</span><span class="cert-meta">Kaseya · 2023</span></li>
+          <li><span class="cert-name">Computer Hacking Forensic Investigator (CHFI)</span><span class="cert-meta">EC-Council · 2018</span></li>
+          <li><span class="cert-name">Certified Ethical Hacker (CEH)</span><span class="cert-meta">EC-Council · 2018</span></li>
+          <li><span class="cert-name">Cybersecurity Analyst (CySA+)</span><span class="cert-meta">CompTIA · 2018</span></li>
+          <li><span class="cert-name">Cisco Certified Entry Networking Technician (CCENT)</span><span class="cert-meta">Cisco · 2016</span></li>
+          <li><span class="cert-name">Linux Administrator (LPIC-1)</span><span class="cert-meta">LPI · 2015</span></li>
         </ul>
-        </div>
+      </section>
 
-        <div class="span">
-          <p class="title">
-            System Analyst - Starbucks <br> (September 2021 to June 2023)
-          </p>
-        </div>
-        <p> Tier (3) technology support - overseeing activations process for licensed stores. Developed internal documentation for standard processes and troubleshooting. Solved complex and highly time-sensitive (hardware/software/network) issues. Mentored systems analysts and provided support and oversight to 3rd-party vendors. </p>
-        
-        <div>
-        <ul class="tool-list-content">
-          <li> Salesforce </li>
-          <li> Splunk </li>
-          <li> Kaseya (VSA) </li>
-          <li> ServiceNow </li>
-          <li> Oracle (Simphony) </li>
-        </ul>
-        </div>
-      
-        <div class="span">
-          <p class="title">
-            IT Support Technician - Axon <br> (July 2020 to August 2021)
-          </p>
-        </div>
-        <p> Tier (1/2/3) technology support for 2,000+ users (North America & Global). Support via phone, Slack, email, Zoom, ServiceNow, BeyondTrust, and in-person. Asset management and hardware support for Windows, macOS, and Linux machines. Worked on Windows Autopilot, OS image creation, and Linux software integration. </p>
-        
-        <div>
-        <ul class="tool-list-content">
-          <li> Azure AD </li>
-          <li> Jamf </li>
-          <li> Microsoft 365 </li>
-          <li> Okta </li>
-          <li> Dynamics 365 </li>
-        </ul>
-        </div>
-
-        <div class="span">
-          <p class="title">
-            IT Support Specialist - Car Wash Enterprises <br> (October 2019 to June 2020)
-          </p>
-        </div>
-        <p> Tier (1/2/3) technology support for 250+ users at 40+ locations in Washington. Managed vendors, billing, licensing, asset management, and support documentation. Performed comprehensive licensing and inventory audits for all IT assets. Implemented SLAs, naming conventions, AD restructure, and password management. </p>
-
-        <div>
-        <ul class="tool-list-content">
-          <li> AD & Exchange </li>
-          <li> Microsoft 365 </li>
-          <li> GFI Mail-Filtering </li>
-          <li> TeamViewer </li>
-          <li> Solar Winds  </li>
-        </ul>
-        </div>
-
-        <div class="span">
-          <p class="title">
-            Field Services Engineer - Seattle Goodwill <br> (October 2015 to December 2017)
-          </p>
-        </div>
-        <p> Tier (1/2/3) technology support for 1000+ users at 25+ locations in Washington. Supported hybrid-VOIP phone system, VMware VDI, and A/V systems. Maintained server and network infrastructure, power, cabling, and cooling. Performed full life-cycle support for laptops, desktops, and mobile (Android/iOS). </p>
-
-        <div>
-        <ul class="tool-list-content">
-          <li> AD & Exchange </li>
-          <li> KACE </li>
-          <li> Dynamics (RMS/GP) </li>
-          <li> McAfee ePO </li>
-          <li> IssueTrak </li>
-        </ul>
-        </div>
-      
-      </div>
-
-      <div class="tabbed-content">
-        
-        <div class="span">
-          <p class="title">
-            Master of Science - Cybersecurity & IA <br> Western Governors University (Graduated: 2019)
-          </p>
-        </div>
-        <p> After I completed my Bachelor of Science degree, I had several years of experience working in technology and I started to think about what area I wanted to specialize in. Much like a lot of new entrants into the field I got interested in cybersecurity. At this point I as waffling between systems administration, system engineering, or cybersecurity. <br> <br> So I decided to enroll in a Masters of Science program at WGU. I learned a lot during the program - inluding: crytopgraphy, secure coding practices, various security standards and frameworks, incident response management, and digial forensices. I burned the confidentiality, integrity, and availability model directly into my brain and snagged some more certifications. </p>
-
-        <div class="span">
-          <p class="title">
-            Bachelor of Science - Information Technology <br> Western Governors University (Graduated: 2017)
-          </p>
-        </div>
-        <p> Once I realized that I wanted to work in technology I transferred over my lower-division undergraduate classes into a Bachelor of Science program. I originally wanted to study computer science but I realized that I genuinely enjoyed working with hardware, and working directly with users, and I didn't want to be stuck in a cubicle coding all day. <br> <br> The information technology at WGU seemed like a great marriage of lots of different elements: coding (front-end + back-end), databases, hardware, networking, application support, and cybersecurity. I got some certifications and my first job working in IT at Seattle Goodwill as a Field Services Engineer. It was a great opportunity to learn everything from the ground up. <br> </p>
-
-
-        <div class="span">
-          <p class="title">
-            Associate of Arts - Liberal Arts & Sciences <br> Green River College (Graduated: 2014)
-          </p>
-        </div>
-        <p> Before I started working in technology, I wasn't really sure what I wanted to do, and so I decided to just start taking classes. I studied all the basics (including the three Rs: reading, writing, and arithmetic) at the college level. Throw in some symbolic logic, journalism, criminal justice, psychology, and a few interesting natural sciences classes, and I got a pretty well-rounded education. <br> <br> During my studies I was working full-time as a security guard at at Amazon headquarters in Seattle. I met and chatted with a lot of software developers and got to learn about the cool problems they were trying to solve, and the cool technology they were building. I started to think that maybe I could do that. <br> </p>
-
-      </div>
-
-      <div class="tabbed-content">
-
-        <div class="span">
-          <p class="title">
-            Starbucks: HashiCorp (Vault) Code Refactor 
-          </p>
-        </div>
-        <p> One of the largest projects I took on in my current role was to refactor all our existing client-side Vault automation scripts and the associated deployment procedures to improve: logging, error handling, reliablity, and performance. The code essentially hadn't been updated for several years and everyone was too afraid to dig into all that code and break something, so I volunteered to rewrite it all. I also became the Vault SME on my team and led multi-team training sessions as well as developing documentation for the product. </p>
-        
-        <div class="span">
-          <p class="title">
-            Axon: Microsoft Intune Migration
-          </p> 
-        </div>
-        <p> During my tenure at Axon - the company was just in the process of moving onto the Microsoft Intune platform and utilizing Windows Autopilot to automate the deployment and configuration of Windows devices. I worked closely with the engineering team to configure and test the first devices, troubleshoot the configuration process, and configure the actual Intune cloud environment itself. This was an amazing learning opportunity for me and I'm super grateful I got to work on the project. </p> 
-        
-        <div class="span">
-          <p class="title">
-            Car Wash Enterprises: AD Restructure & Asset Management
-          </p> 
-        </div>
-        <p> I was tasked with restructuring the Active Directory structure and creating a new naming convention for all our IT assets and locations. This also insolved a comprehensive audit and inventory process for all equipment at 40+ locations throughout Washington. I learned a lot about Active Directory and IT asset inventory management in general. The project was a huge success and made it much easier to track assets and navigate within our Active Directory environment. </p>
-
-        <div class="span">
-          <p class="title">
-            Seattle Goodwill: Migration to VMWare Infrastructure
-          </p> 
-        </div>
-        <p> At the Job Training & Education Centers (JTECs) there was a huge push to move from traditional desktops to thin-clients backed by a central VMWare server cluster. I worked closed out with System Engineer and System Administrator to configure, test, and deploy this new equipment out to the field, and provide training and orientation to employees. The project massively reduced our reimaging and reconfiguration burden, as well as saving money, and lowering power consumption at sites. I also learned a ton about hypervisors, VMs, and thin clients. </p> 
-
-        <div class="span">
-          <p class="title">
-            Personal Code Project: Darkest Dungeon
-          </p>
-        </div>
-        <p> My first computer was an Apple //e and I'm a sucker for old-school computer games. I remember having so much fun with simple text-based dungeon crawlers. So I decided to build one myself. It's fairly simple Flask-based website with an Nginix front-end. I hope to have it finished and ready to public consumption this year. Stay tuned for updates. I've learned so much throughout this process including containerization via Docker, handling application dependencies, and deploying to production via AWS. </p>
-        
-        <div class="span">
-          <p class="title">
-            Personal Business Project: WIRED WORKS
-          </p>
-        </div>
-        <p> I created the WIRED WORKS brand in order to provide independent technology consulting services and technical product reviews on YouTube. I learned a lot and had a blast. I don't currently have any of my content published but I still have all the original video files. Someday I might move back into the entrepreneur space. Who knows, maybe you'll see me in your YouTube feed. </p> 
-
-      </div>
-   
+      <!-- Contact -->
+      <section class="section wrap contact">
+        <h2 class="display contact-title">Let's connect.</h2>
+        <p>Want to talk tech or looking for an engineer for your team? I'd love to hear from you.</p>
+        <a class="button button-primary" href="https://www.linkedin.com/in/charlesgoodfellow/" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-linkedin"/></svg> Message me on LinkedIn
+        </a>
+      </section>
     </main>
-    
-    <footer class="container">
 
-      <div class="github-icon social-icon">
-        <a href="https://github.com/charlesgoodfellow/" target="_blank"> <img id="github-icon" src="./IMG/GitHub-Icon-Light.png"></a>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>© <span id="year">2026</span> Charles Goodfellow</p>
+        <div class="socials">
+          <a class="icon-button" href="https://github.com/charlesgoodfellow" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg aria-hidden="true"><use href="#i-github"/></svg>
+          </a>
+          <a class="icon-button" href="https://www.linkedin.com/in/charlesgoodfellow/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg aria-hidden="true"><use href="#i-linkedin"/></svg>
+          </a>
+        </div>
       </div>
-
-      <div class="footer-copyright">
-        <h4 class="title"> <img src="./IMG/Heart-Icon.png">  Copyright <script> document.write(new Date().getFullYear()); </script> (CG) <img src="./IMG/Heart-Icon.png"> </h4>
-      </div>
-
-      <div class="linkedin-icon social-icon">
-        <a href="https://www.linkedin.com/in/charlesgoodfellow/" target="_blank"> <img id="linkedin-icon" src="./IMG/LinkedIn-Icon-Light.png"></a>
-      </div>
-
     </footer>
 
-    <!-- Link to external JavaScript -->
-    <script src="./JS/main.js">
-
-    </script>
-    
+    <script src="./JS/main.js" defer></script>
   </body>
 </html>
