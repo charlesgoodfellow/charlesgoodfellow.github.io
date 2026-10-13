@@ -370,21 +370,13 @@ img {
   isolation: isolate;
 }
 
-.hero-photo::before,
-.hero-photo::after {
+.hero-photo::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
   background: conic-gradient(var(--lavender-dark), var(--lavender-light) 20%, transparent 38%, var(--lavender-mid) 55%, var(--lavender-dark) 72%, var(--lavender-light) 88%, var(--lavender-dark));
   animation: spin 8s linear infinite;
-}
-
-.hero-photo::after {
-  z-index: -1;
-  inset: -6px;
-  filter: blur(24px);
-  opacity: 0.7;
 }
 
 .hero-photo img {
@@ -955,8 +947,7 @@ img {
     transform: none;
   }
 
-  .hero-photo::before,
-  .hero-photo::after {
+  .hero-photo::before {
     animation: none;
   }
 }
