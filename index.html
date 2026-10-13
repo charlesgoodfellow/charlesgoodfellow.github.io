@@ -75,8 +75,6 @@
 
     <header class="site-header">
       <div class="wrap header-inner">
-        <a href="#top" class="brand" aria-label="Charles Goodfellow, back to top">CG</a>
-
         <nav class="site-nav" aria-label="Primary">
           <button class="icon-button nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
             <svg aria-hidden="true"><use href="#i-menu"/></svg>
@@ -84,10 +82,14 @@
           <ul id="nav-links" class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li class="nav-brand"><a href="#top" class="brand" aria-label="Charles Goodfellow, back to top">CG</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#education">Education</a></li>
           </ul>
         </nav>
+
+        <!-- On phones the links collapse into the menu, so the logo stands on its own -->
+        <a href="#top" class="brand brand-mobile" aria-label="Charles Goodfellow, back to top">CG</a>
 
         <button class="icon-button theme-toggle" type="button" aria-label="Toggle dark mode">
           <svg class="icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
